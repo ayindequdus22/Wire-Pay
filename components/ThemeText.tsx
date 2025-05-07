@@ -1,4 +1,4 @@
-import { StyleSheet, Text, type TextProps } from 'react-native';
+import { StyleProp, StyleSheet, Text, type TextProps } from 'react-native';
 import React from 'react'
 import { scale } from 'react-native-size-matters';
 const ThemeTextFont = {
@@ -31,12 +31,12 @@ export type ThemedTextProps = TextProps & {
     darkColor?: string;
     font?: number
     type?: 'default' | 'title' | 'defaultSemiBold' | 'subtitle' | 'link';
-    className?: string
+    className?: string, style?: StyleProp<TextProps>
 };
 
-export default function ThemeText({ className, font, type = "default", ...rest }: ThemedTextProps) {
+export default function ThemeText({ className, font, style, type = "default", ...rest }: ThemedTextProps) {
     return (
-        <Text className={className} {...rest} style={[type === "default" ? ThemeTextFont.default : ThemeTextFont.defaultSemiBold]}
+        <Text className={className} {...rest} style={[type === "default" ? ThemeTextFont.default : ThemeTextFont.defaultSemiBold, style]}
         />
     )
 }
