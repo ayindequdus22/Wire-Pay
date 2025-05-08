@@ -4,12 +4,11 @@ import { Stack } from 'expo-router'
 
 const _layout = () => {
   return (
-    // <Stack>
-    //     <Stack.Screen name='login'/>
-    // </Stack>
-    <View>
-        <Text>Hello login jor</Text>
-    </View>
+    <Stack>
+      <Stack.Screen name='login' />
+      <Stack.Screen name='register' />
+    </Stack>
+
   )
 }
 
