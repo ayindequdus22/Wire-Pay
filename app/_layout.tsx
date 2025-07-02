@@ -4,6 +4,7 @@ import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import Safescreen from "@/components/SafeScreen";
 import { useFonts } from "expo-font";
+import { View } from "react-native";
 export default function RootLayout() {
   const [loaded] = useFonts({
     'spaceMono': require('../assets/fonts/SpaceMono-Regular.ttf'),
@@ -16,13 +17,16 @@ export default function RootLayout() {
     // Async font loading only occurs in development.
     return null;
   }
-  return (<SafeAreaProvider>
-    <Safescreen>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="index" />
-        <Stack.Screen name="(auth)" />
-      </Stack>
-      <StatusBar style="dark" />
-    </Safescreen>
-  </SafeAreaProvider>)
+  return (
+
+    <SafeAreaProvider>
+      <Safescreen>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="(auth)" />
+          <Stack.Screen name="index" />
+        </Stack>
+        <StatusBar style="dark" />
+      </Safescreen>
+    </SafeAreaProvider>
+  )
 }

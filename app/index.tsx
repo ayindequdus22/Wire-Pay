@@ -1,16 +1,19 @@
-import { TouchableOpacity, View, Image, StyleSheet } from "react-native";
-import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
-import {  useRouter } from "expo-router";
-import "../global.css"
 import ThemeText from "@/components/ThemeText";
-import { screenHeight, screenWidth } from "@/constant/screen"
+import { screenHeight, screenWidth } from "@/constant/screen";
+import { useRouter } from "expo-router";
+import { Image, StyleSheet, TouchableOpacity, useColorScheme, View } from "react-native";
+import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
+import "../global.css";
 export default function Index() {
   const router = useRouter();
+  const textScheme = useColorScheme();
+
   return (
     <View
-      className="bg-[#E5E5E5] flex-1 justify-between items-center" style={{ paddingHorizontal: moderateScale(20),
-         paddingVertical: moderateScale(60)
-         }}
+      className="bg-[#E5E5E5] flex-1 justify-between items-center" style={{
+        paddingHorizontal: moderateScale(20),
+        paddingVertical: moderateScale(60)
+      }}
     >
       <View>
         <Image style={{
@@ -36,7 +39,7 @@ export default function Index() {
         </View>
         <ThemeText className="text-[rgba(132,132,132,1)] font-poppins" style={styles.secondText}>Connect your money to your friends & brands.</ThemeText>
       </View>
-      <TouchableOpacity style={{ height: scale(50), marginBottom: verticalScale(10) }} className="bg-primary flex rounded-lg shadow-[0_0_1px_rgba(44,44,44,1)] justify-center items-center w-full">
+      <TouchableOpacity style={{ height: scale(50), marginBottom: verticalScale(10) }} className="bg-primary flex rounded-lg shadow-[0_0_1px_rgba(44,44,44,1)] justify-center items-center w-full" onPress={() => router.navigate("/(auth)/login")}>
         <ThemeText className="text-white uppercase tracking-widest" style={{ fontSize: scale(20) }}>
           Get Started</ThemeText>
       </TouchableOpacity>

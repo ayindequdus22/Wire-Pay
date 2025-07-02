@@ -5,14 +5,16 @@ module.exports = {
   presets: [require("nativewind/preset")],
   theme: {
     extend: {
-      fontFamily:{
+      fontFamily: {
         poppins: ['poppins'],
         titalium: ['titalium'],
 
       },
-      colors:{
-        'primary':'rgba(255,137,126,1)',
-        'secondary':"rgba(1,26,81,0.82)"
+      colors: {
+        'primary': 'rgba(251,132,124,1)',
+        'secondary': "rgba(1,26,81,0.82)",
+        "tertiary-text": "rgba(115,126,150,1)"
+
       }
     },
   },

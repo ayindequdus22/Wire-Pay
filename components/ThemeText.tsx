@@ -1,42 +1,46 @@
-import { StyleProp, StyleSheet, Text, type TextProps } from 'react-native';
-import React from 'react'
+import React from 'react';
+import { Text, TextProps, StyleProp, TextStyle } from 'react-native';
 import { scale } from 'react-native-size-matters';
+import Colors from './colors'; // assumes Colors.secondary exists
+
 const ThemeTextFont = {
     default: {
-        fontSize: 16,
-        lineHeight: 24,
-    },
-    defaultSemiBold: {
-        fontSize: 16,
-        lineHeight: 24,
-        fontWeight: '600',
+        fontSize: scale(14),
+        fontWeight: '400' as TextStyle['fontWeight'],
     },
     title: {
-        fontSize: 32,
-        fontWeight: 'bold',
-        lineHeight: 32,
+        fontSize: scale(25),
+        fontWeight: '600' as TextStyle['fontWeight'], // semiBold equivalent
+        color: Colors.secondary,
     },
-    subtitle: {
-        fontSize: 20,
-        fontWeight: 'bold',
+    details: {
+        fontSize: scale(14),
+        // fontWeight: '400' as TextStyle['fontWeight'], // light
+    },
+    body: {
+        fontSize: scale(18),
     },
     link: {
-        lineHeight: 30,
-        fontSize: 16,
-        color: '#0a7ea4',
-    }
-}
-export type ThemedTextProps = TextProps & {
-    lightColor?: string;
-    darkColor?: string;
-    font?: number
-    type?: 'default' | 'title' | 'defaultSemiBold' | 'subtitle' | 'link';
-    className?: string, style?: StyleProp<TextProps>
+        fontSize: scale(16),
+        fontWeight: '500' as TextStyle['fontWeight'], // medium
+        color: Colors.primary || Colors.secondary,
+    },
 };
 
-export default function ThemeText({ className, font, style, type = "default", ...rest }: ThemedTextProps) {
+export type ThemedTextProps = TextProps & {
+    type?: keyof typeof ThemeTextFont;
+    style?: StyleProp<TextStyle>;
+};
+
+export default function ThemeText({
+    type = 'default',
+    style,
+    children,
+    ...rest
+}: ThemedTextProps) {
     return (
-        <Text className={className} {...rest} style={[type === "default" ? ThemeTextFont.default : ThemeTextFont.defaultSemiBold, style]}
-        />
-    )
+        <Text style={[ThemeTextFont[type], style]} {...rest}>
+            {children}
+        </Text>
+    );
 }
